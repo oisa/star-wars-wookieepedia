@@ -1,0 +1,12 @@
+.aron {
+  background-color: brown;
+
+  p {
+  &.visible {
+    visiblity: visible;
+  }
+  &:hover {
+    color: red;
+  }
+}
+}
