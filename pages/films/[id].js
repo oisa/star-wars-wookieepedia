@@ -87,40 +87,42 @@ const FilmDetail = ({ children, href }) => {
           { selectedFilm == null ? null : <p>{selectedFilm.opening_crawl}</p> }
         </div>
 
-          { selectedFilm == null ? null :
-            <div className={ styles.specsContainer }>
+        { selectedFilm == null ? null :
+            <div className={ styles.specsInnerContainer }>
+              <h3>Film Specs</h3>
+              <p><span>Title:</span> { selectedFilm.title }</p>
+              <p><span>Episode Number:</span> { selectedFilm.episode_id }</p>
+              <p><span>Release Date:</span> {
 
-              <div className={ styles.specsInnerContainer }>
-                <h3>Film Specs</h3>
-                <p><span>Title:</span> { selectedFilm.title }</p>
-                <p><span>Episode Number:</span> { selectedFilm.episode_id }</p>
-                <p><span>Release Date:</span> {
+                `${days[(new Date(selectedFilm.release_date)).getDay()]},
 
-                  `${days[(new Date(selectedFilm.release_date)).getDay()]},
+                ${(new Date(selectedFilm.release_date)).getDate()}
 
-                  ${(new Date(selectedFilm.release_date)).getDate()}
+                ${months[(new Date(selectedFilm.release_date)).getMonth()]}
 
-                  ${months[(new Date(selectedFilm.release_date)).getMonth()]}
+                ${(new Date(selectedFilm.release_date)).getFullYear()}`
 
-                  ${(new Date(selectedFilm.release_date)).getFullYear()}`
+                }</p>
+              <p><span>Director:</span> { selectedFilm.director }</p>
+              <p><span>Producer(s):</span> { selectedFilm.producer }</p>
+            </div>
+          }
 
-                  }</p>
-                <p><span>Director:</span> { selectedFilm.director }</p>
-                <p><span>Producer(s):</span> { selectedFilm.producer }</p>
-              </div>
+            { selectedFilm == null ? null :
 
-              <div className={ styles.specsInnerContainer }>
+              <div className={ styles.charactersContainer }>
                 <h3>Characters</h3>
                 { selectedFilmCharacters == null ? null : selectedFilmCharacters.map((sr, i) => (
-                  <div key={i}>
-                    <p>{sr.name} | {sr.birth_year}</p>
+
+                  <div className={ styles.tooltip } key={ i }>{ sr.name }
+                    <span className={ styles.tooltipText } >{ `${ sr.name } | ${ sr.birth_year } | ${ sr.eye_color } | ${ sr.gender } | ${ sr.hair_color }` }</span>
                   </div>
+
                   ))
                 }
               </div>
 
-            </div>
-          }
+            }
 
       </div>
 
