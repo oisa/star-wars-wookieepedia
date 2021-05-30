@@ -40,9 +40,18 @@ const FilmDetail = ({ children, href }) => {
         </div>
 
           { selectedFilm == null ? null :
-            <div className={ styles.charactersContainer }>
-              <h3>Characters</h3>
-              {selectedFilm.opening_crawl}
+            <div className={ styles.specsContainer }>
+
+              <div className={ styles.specsInnerContainer }>
+                <h3>Film Specs</h3>
+                {selectedFilm.opening_crawl}
+              </div>
+
+              <div className={ styles.specsInnerContainer }>
+                <h3>Characters</h3>
+                {selectedFilm.opening_crawl}
+              </div>
+
             </div>
           }
 
