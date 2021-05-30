@@ -10,7 +10,6 @@ function ThemeContextProvider({ children }) {
   const [people, setPeople] = useState()
   const [films, setFilms] = useState()
   const [favourites, setFavourites] = useState([])
-  const [allegiance, setAllegiance] = useState()
   const [searchResults, setSearchResults] = useState()
 
   const getData = async (query) => {
@@ -39,6 +38,7 @@ function ThemeContextProvider({ children }) {
   // Theme
 
   const [theme, setTheme] = useState(true);
+  const [allegiance, setAllegiance] = useState()
 
   // Values passed down to children
 
@@ -55,7 +55,7 @@ function ThemeContextProvider({ children }) {
     setFavourites,
     favourites,
     allegiance,
-    setAllegiance 
+    setAllegiance
   };
 
   return (

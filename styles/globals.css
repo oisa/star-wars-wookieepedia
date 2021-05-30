@@ -78,12 +78,21 @@ h1 {
   text-align: center;
   font-size: var(--font-l);
   margin: 0;
+  text-align: center;
 }
 
 h2 {
   color: rgb(var(--color-tertiary));
   font-family: var(--font-family-star-wars);
   font-size: var(--font-xl);
+  margin: 0 0 10px 0;
+  text-align: center;
+}
+
+h3 {
+  color: rgb(var(--color-tertiary));
+  font-family: var(--font-family-star-wars);
+  font-size: var(--font-l);
   margin: 0 0 10px 0;
 }
 
@@ -101,9 +110,10 @@ header {
 /* ----- Footer ----- */
 
 footer {
-  position: absolute;
+  position: fixed;
   bottom: 10px;
-  width: 100%;
+  left: 10px;
+  /* width: 100%; */
   text-align: center;
   display: flex;
   justify-content: center;
@@ -111,9 +121,11 @@ footer {
 }
 
 footer p {
-  margin: 10px;
-  padding: 10px;
-  width: 200px;
+  margin: 5px;
+  padding: 5px;
+  width: 180px;
+  text-align: center;
+  border: var(--line-weight-m) solid black;
   border-radius: 30px;
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
@@ -182,6 +194,15 @@ footer p {
 
   header {
     padding: 10px;
+  }
+
+  h2 {
+    margin: 10px 50px;
+  }
+
+  footer {
+    left: 0px;
+    width: 100%;
   }
 
 }
