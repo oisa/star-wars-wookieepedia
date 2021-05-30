@@ -42,27 +42,27 @@ const FilmDetail = ({ children, href }) => {
     'December'
   ]
 
-  const getCharacterData = async (json) => {
-
-    const result = [];
-
-    (json.characters).forEach(async (item) => {
-
-      const https = await item.replace("http", "https");
-      const res = await fetch(https);
-      const json = await res.json();
-      const write = result.push(json);
-      const updateState = await setSelectedFilmCharacters([...result]);
-
-    });
-
-  }
+  // const getCharacterData = async (json) => {
+  //
+  //   const result = [];
+  //
+  //   (json.characters).forEach(async (item) => {
+  //
+  //     const https = await item.replace("http", "https");
+  //     const res = await fetch(https);
+  //     const json = await res.json();
+  //     const write = result.push(json);
+  //     const updateState = await setSelectedFilmCharacters([...result]);
+  //
+  //   });
+  //
+  // }
 
   const getData = async () => {
     const pageNum = await ((window.location.href).split("/").slice(-1)[0]);
     const res = await fetch(`https://swapi.dev/api/films/${ pageNum }`);
     const json = await res.json();
-    return setSelectedFilm(json), getCharacterData(json);
+    return setSelectedFilm(json)
   }
 
   useEffect(() => {
