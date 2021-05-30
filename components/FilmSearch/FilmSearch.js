@@ -11,6 +11,8 @@ const FilmSearch = () => {
 
   const { films, setFilms, favourites, setFavourites } = useContext(ThemeContext)
 
+  // Sort Method
+
   const [sortMethod, setSortMethod] = useState('Release Date')
 
   // Favourites Management

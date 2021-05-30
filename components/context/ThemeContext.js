@@ -42,7 +42,21 @@ function ThemeContextProvider({ children }) {
 
   // Values passed down to children
 
-  const values = { setTheme, theme, people, films, setFilms, getSearchData, setSearchResults, searchResults, getData, setFavourites, favourites };
+  const values = {
+    setTheme,
+    theme,
+    people,
+    films,
+    setFilms,
+    getSearchData,
+    setSearchResults,
+    searchResults,
+    getData,
+    setFavourites,
+    favourites,
+    allegiance,
+    setAllegiance 
+  };
 
   return (
     <ThemeContext.Provider value={ values }>
