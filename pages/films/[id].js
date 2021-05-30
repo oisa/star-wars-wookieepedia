@@ -15,12 +15,63 @@ import StarWarsLogo from '../../public/assets/StarWarsLogo';
 const FilmDetail = ({ children, href }) => {
 
   const [selectedFilm, setSelectedFilm] = useState();
+  const [selectedFilmCharacters, setSelectedFilmCharacters] = useState();
+
+  const days = [
+    'Sun',
+    'Mon',
+    'Tue',
+    'Wed',
+    'Thu',
+    'Fri',
+    'Sat'
+  ]
+
+  const months = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December'
+  ]
+
+  // const getCharacterDataL2 = async (item) => {
+  //
+  //   const res = await fetch(item);
+  //   const json = await res.json();
+  //   const write = await result.push(json)
+  //   // console.log(json)
+  //   return json
+  // }
+
+  const getCharacterData = async (json) => {
+
+    const result = [];
+
+    json.forEach(async (item) => {
+
+      const res = await fetch(item);
+      const json = await res.json();
+      const write = await result.push(json);
+
+    });
+
+    return setSelectedFilmCharacters(result);
+
+  }
 
   const getData = async () => {
     const pageNum = await ((window.location.href).split("/").slice(-1)[0]);
     const res = await fetch(`https://swapi.dev/api/films/${ pageNum }`);
     const json = await res.json();
-    return setSelectedFilm(json);
+    return setSelectedFilm(json), getCharacterData(json.characters);
   }
 
   useEffect(() => {
@@ -44,12 +95,29 @@ const FilmDetail = ({ children, href }) => {
 
               <div className={ styles.specsInnerContainer }>
                 <h3>Film Specs</h3>
-                {selectedFilm.opening_crawl}
+                <p><span>Title:</span> { selectedFilm.title }</p>
+                <p><span>Episode Number:</span> { selectedFilm.episode_id }</p>
+                <p><span>Release Date:</span> {
+
+                  `${days[(new Date(selectedFilm.release_date)).getDay()]},
+
+                  ${(new Date(selectedFilm.release_date)).getDate()}
+
+                  ${months[(new Date(selectedFilm.release_date)).getMonth()]}
+
+                  ${(new Date(selectedFilm.release_date)).getFullYear()}`
+
+                  }</p>
+                <p><span>Director:</span> { selectedFilm.director }</p>
+                <p><span>Producer(s):</span> { selectedFilm.producer }</p>
               </div>
 
               <div className={ styles.specsInnerContainer }>
                 <h3>Characters</h3>
-                {selectedFilm.opening_crawl}
+                { selectedFilmCharacters == null ? null : selectedFilmCharacters.map((sr, i) => (
+                <li key={i}>
+                  {sr.name}
+                </li> )) }
               </div>
 
             </div>

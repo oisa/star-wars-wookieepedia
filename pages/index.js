@@ -6,7 +6,6 @@ import styles from '../styles/Home.module.scss'
 // Components
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
-import StarFieldComponent from '../components/StarFieldComponent'
 import Foo from '../components/Foo/Foo.js';
 import FilmSearch from '../components/FilmSearch/FilmSearch';
 import ThemeComponent from '../components/Theme/ThemeComponent';
@@ -20,8 +19,6 @@ export default function Home() {
         <meta name="description" content="Wookieepedia | Star Wars Film Database" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
-      <StarFieldComponent />
 
       <Header />
 
