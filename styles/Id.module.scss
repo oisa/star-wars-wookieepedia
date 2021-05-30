@@ -72,6 +72,13 @@
   justify-content: center;
 }
 
+.charactersContainer {
+  padding: 0 20px 20px 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 
 @media (max-width: 1000px) {
 

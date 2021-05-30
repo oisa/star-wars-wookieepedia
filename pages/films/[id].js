@@ -42,15 +42,6 @@ const FilmDetail = ({ children, href }) => {
     'December'
   ]
 
-  // const getCharacterDataL2 = async (item) => {
-  //
-  //   const res = await fetch(item);
-  //   const json = await res.json();
-  //   const write = await result.push(json)
-  //   // console.log(json)
-  //   return json
-  // }
-
   const getCharacterData = async (json) => {
 
     const result = [];
@@ -59,11 +50,10 @@ const FilmDetail = ({ children, href }) => {
 
       const res = await fetch(item);
       const json = await res.json();
-      const write = await result.push(json);
+      const write = result.push(json);
+      const updateState = await setSelectedFilmCharacters([...result]);
 
     });
-
-    return setSelectedFilmCharacters(result);
 
   }
 
@@ -80,6 +70,13 @@ const FilmDetail = ({ children, href }) => {
 
   return (
     <div className={ styles.container }>
+
+      <Head>
+        <title>{ selectedFilm == null ? 'Loading...' : selectedFilm.title } | Wookieepedia | Star Wars Film Database</title>
+        <meta name="description" content="Wookieepedia | Star Wars Film Database" />
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
+
       <Header />
 
       <div className={ styles.mainContainer }>
@@ -115,9 +112,11 @@ const FilmDetail = ({ children, href }) => {
               <div className={ styles.specsInnerContainer }>
                 <h3>Characters</h3>
                 { selectedFilmCharacters == null ? null : selectedFilmCharacters.map((sr, i) => (
-                <li key={i}>
-                  {sr.name}
-                </li> )) }
+                  <div key={i}>
+                    <p>{sr.name} | {sr.birth_year}</p>
+                  </div>
+                  ))
+                }
               </div>
 
             </div>
@@ -126,6 +125,7 @@ const FilmDetail = ({ children, href }) => {
       </div>
 
       <Footer />
+
     </div>
   )
 }
