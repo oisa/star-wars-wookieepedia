@@ -5,9 +5,9 @@ import styles from '../../styles/Id.module.scss'
 import axios from 'axios';
 
 // Components
-import ThemeComponent from '../../components/Theme/ThemeComponent';
-import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
+import ThemeComponent from '../../components/Theme/ThemeComponent'
+import Header from '../../components/Header/Header'
+import Footer from '../../components/Footer/Footer'
 
 // Assets
 import StarWarsLogo from '../../public/assets/StarWarsLogo';
@@ -78,13 +78,13 @@ const FilmDetail = ({ children, href }) => {
         <link rel="icon" href="/favicon.ico" />
         <meta property="og:title" content="Wookieepedia | Star Wars Film Database" />
         <meta property="og:description" content="Explore all the details for all your favourite Star Wars films!" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="theme-color" content="#ffffff" />
         <meta property="og:image" content="../public/Wookieepedia-Star-Wars-Database-OG-Image.png" />
         <link rel="apple-touch-icon" sizes="180x180" href="../public/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="../public/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="../public/favicon-16x16.png" />
         <link rel="mask-icon" href="../public/safari-pinned-tab.svg" color="#5bbad5" />
-        <meta name="msapplication-TileColor" content="#000000" />
-        <meta name="theme-color" content="#ffffff" />
       </Head>
 
       <Header />

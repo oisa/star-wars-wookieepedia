@@ -42,14 +42,22 @@ const Theme = () => {
   }
 
   return (
+
     <ThemeProvider theme={ theme === 'light' ? lightTheme : darkTheme }>
+
       <div className={styles.theme}>
+
         <GlobalStyles />
+
         <p>Allegiance: {theme} side</p>
+
         <label className={ styles.switch }><input onClick={toggleTheme} type="checkbox" checked={theme === 'dark' ? 'true' : false}/> <div></div>
         </label>
+
       </div>
+
     </ThemeProvider>
+
   )
 }
 
