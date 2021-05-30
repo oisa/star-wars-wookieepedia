@@ -48,7 +48,8 @@ const FilmDetail = ({ children, href }) => {
 
     json.forEach(async (item) => {
 
-      const res = await fetch(item);
+      const https = item.replace("http", "https");
+      const res = await fetch(https);
       const json = await res.json();
       const write = result.push(json);
       const updateState = await setSelectedFilmCharacters([...result]);
