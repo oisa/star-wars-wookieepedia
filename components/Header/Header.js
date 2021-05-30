@@ -11,12 +11,12 @@ import StarWarsLogo from '../../public/assets/StarWarsLogo';
 const Header = () => {
   return (
     <header>
+      <ThemeComponent />
+
       <a href="/">
         <StarWarsLogo />
         <h1 className="noselect">Wookieepedia</h1>
       </a>
-
-      <ThemeComponent />
     </header>
   )
 }

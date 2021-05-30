@@ -174,3 +174,14 @@ footer p {
   -ms-user-select: none; /* IE */
   user-select: none;
 }
+
+
+/* ----- Media Queries ----- */
+
+@media (max-width: 600px) {
+
+  header {
+    padding: 10px;
+  }
+
+}

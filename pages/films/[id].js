@@ -12,51 +12,32 @@ import Footer from '../../components/Footer/Footer';
 // Assets
 import StarWarsLogo from '../../public/assets/StarWarsLogo';
 
-// export const getStaticPaths = async () => {
-//   const res = await fetch('https://swapi.dev/api/films/');
-//   const data = await res.json();
-//
-//   const paths = data.map(films => {
-//     return {
-//       params: { id: films.episode_id.toString() }
-//     }
-//   })
-//
-//   return {
-//     paths,
-//     fallback: false
-//   }
-// }
-//
-// export const getStaticProps = async (context) => {
-//   const id = context.params.id;
-//   const res = await fetch('https://swapi.dev/api/films/' + id);
-//   const data = await res.json();
-//
-//   return {
-//     props: { film: data }
-//   }
-// }
-
 const FilmDetail = ({ children, href }) => {
 
   const [selectedFilm, setSelectedFilm] = useState();
 
-  useEffect(() => {
-    setSelectedFilm((window.location.href).split("/").slice(-1)[0]);
-  }, [])
-
-  const getFilms = () => {
-    axios('https://swapi.dev/api/films/').then((response) => {
-      setFilms(response.data.results);
-    });
+  const getData = async () => {
+    const pageNum = await ((window.location.href).split("/").slice(-1)[0]);
+    const res = await fetch(`https://swapi.dev/api/films/${ pageNum }`);
+    const json = await res.json();
+    return setSelectedFilm(json);
   }
+
+  useEffect(() => {
+    getData()
+  }, [])
 
   return (
     <div className={ styles.container }>
       <Header />
 
-      <div className={styles.mainContainer}>
+      <div className={ styles.mainContainer }>
+
+        { selectedFilm == null ? <p>Loading...</p> : <h2>{selectedFilm.title}</h2> }
+
+        <div className={ styles.scrollContainer }>
+          { selectedFilm == null ? null : <p>{selectedFilm.opening_crawl}</p> }
+        </div>
 
       </div>
 

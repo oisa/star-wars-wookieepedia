@@ -72,7 +72,7 @@ const FilmSearch = () => {
         <ul>
           { films == null ? <li><p>Loading...</p></li> : films.map((sr, i) => (
           <li key={i}>
-            <a href={ sr.url }>
+            <a href={ `films/${sr.url.replace("http://swapi.dev/api/films/", "")}` }>
             Episode {sr.episode_id}: {sr.title}</a><span onClick={() => { addToFavourites(i)}}><IconStar  /></span>
           </li> )) }
         </ul>

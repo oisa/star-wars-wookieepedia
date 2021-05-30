@@ -52,3 +52,22 @@
   }
 
 }
+
+/* ----- Media Queries ----- */
+
+@media (max-width: 600px) {
+
+  .theme {
+    position: inherit;
+    flex-direction: row;
+    width: 100%;
+    align-items: baseline;
+    justify-content: center;
+
+    p {
+      margin: 0px;
+    }
+
+  }
+
+}
