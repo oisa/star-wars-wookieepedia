@@ -5,6 +5,8 @@ Welcome to Wookieepedia!
 
 Explore all the details for all your favourite Star Wars films.
 
+[Visit site](https://star-wars-wookieepedia.vercel.app/)
+
 ![Wookieepedia Image | Home](public/readme-image-1.png)
 
 ## Features
@@ -16,10 +18,10 @@ Explore all the details for all your favourite Star Wars films.
 
 ![Wookieepedia Image | Home](public/readme-image-2.png)
 
-### Coming
+### Coming features
 
-- Film search.
-- Sort films by episode number or release date.
+- Film search on the home page
+- Sort films by episode number or release date
 
 ### Known issues
 
