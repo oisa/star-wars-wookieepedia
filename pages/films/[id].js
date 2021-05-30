@@ -46,9 +46,9 @@ const FilmDetail = ({ children, href }) => {
 
     const result = [];
 
-    json.forEach(async (item) => {
+    (json.characters).forEach(async (item) => {
 
-      const https = item.replace("http", "https");
+      const https = await item.replace("http", "https");
       const res = await fetch(https);
       const json = await res.json();
       const write = result.push(json);
@@ -62,7 +62,7 @@ const FilmDetail = ({ children, href }) => {
     const pageNum = await ((window.location.href).split("/").slice(-1)[0]);
     const res = await fetch(`https://swapi.dev/api/films/${ pageNum }`);
     const json = await res.json();
-    return setSelectedFilm(json), getCharacterData(json.characters);
+    return setSelectedFilm(json), getCharacterData(json);
   }
 
   useEffect(() => {
@@ -76,13 +76,22 @@ const FilmDetail = ({ children, href }) => {
         <title>{ selectedFilm == null ? 'Loading...' : selectedFilm.title } | Wookieepedia | Star Wars Film Database</title>
         <meta name="description" content="Wookieepedia | Star Wars Film Database" />
         <link rel="icon" href="/favicon.ico" />
+        <meta property="og:title" content="Wookieepedia | Star Wars Film Database" />
+        <meta property="og:description" content="Explore all the details for all your favourite Star Wars films!" />
+        <meta property="og:image" content="../public/Wookieepedia-Star-Wars-Database-OG-Image.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="../public/apple-touch-icon.png" />
+        <link rel="icon" type="image/png" sizes="32x32" href="../public/favicon-32x32.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="../public/favicon-16x16.png" />
+        <link rel="mask-icon" href="../public/safari-pinned-tab.svg" color="#5bbad5" />
+        <meta name="msapplication-TileColor" content="#000000" />
+        <meta name="theme-color" content="#ffffff" />
       </Head>
 
       <Header />
 
       <div className={ styles.mainContainer }>
 
-        { selectedFilm == null ? <p>Loading...</p> : <h2>{selectedFilm.title}</h2> }
+        { selectedFilm == null ? <p>Loading...</p> : <h2>{ selectedFilm.title }</h2> }
 
         <div className={ styles.scrollContainer }>
           { selectedFilm == null ? null : <p>{selectedFilm.opening_crawl}</p> }
