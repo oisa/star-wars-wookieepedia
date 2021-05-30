@@ -17,6 +17,8 @@ const FilmSearch = () => {
 
   // Favourites Management
 
+  // Add to Favourites
+
   const addToFavourites = (i) => {
 
     let favourite = films[i];
@@ -30,7 +32,13 @@ const FilmSearch = () => {
     setFilms((films.filter(item => item.episode_id !== favourite.episode_id)).sort(function(a, b) {
       return Date.parse(a.release_date) - Date.parse(b.release_date);
     }));
+
+    localStorage.setItem('favourites', favourites);
+    localStorage.setItem('films', films);
+
   }
+
+  // Remove from Favourites
 
   const removeFromFavourites = (i) => {
 
