@@ -33,8 +33,8 @@ const FilmSearch = () => {
       return Date.parse(a.release_date) - Date.parse(b.release_date);
     }));
 
-    localStorage.setItem('favourites', favourites);
-    localStorage.setItem('films', films);
+    localStorage.setItem('favourites', JSON.stringify(favourites));
+    localStorage.setItem('films', JSON.stringify(films));
 
   }
 
@@ -53,6 +53,10 @@ const FilmSearch = () => {
     setFavourites((favourites.filter(item => item.episode_id !== favourite.episode_id)).sort(function(a, b) {
       return Date.parse(a.release_date) - Date.parse(b.release_date);
     }));
+
+    localStorage.setItem('favourites', JSON.stringify(favourites));
+    localStorage.setItem('films', JSON.stringify(films));
+
   }
 
   return (

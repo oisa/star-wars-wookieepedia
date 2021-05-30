@@ -19,6 +19,7 @@ function ThemeContextProvider({ children }) {
   }
 
   const getFilms = () => {
+
     axios('https://swapi.dev/api/films/').then((response) => {
       setFilms(response.data.results);
     });
