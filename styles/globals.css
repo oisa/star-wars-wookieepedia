@@ -126,9 +126,13 @@ footer p {
   fill: rgb(var(--color-tertiary));
 }
 
-.icon-star {
+.icon-star, .icon-star-selected {
   stroke: rgb(var(--color-tertiary));
   cursor: var(--cursor-pointer);
+}
+
+.icon-star-selected {
+  fill: rgb(var(--color-tertiary));
 }
 
 

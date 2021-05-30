@@ -41,9 +41,9 @@ export default function Home() {
 
       </div>
 
-      <footer>
+      { /* <footer>
         <p>Powered by The Force.</p>
-      </footer>
+      </footer> */}
 
     </div>
   )

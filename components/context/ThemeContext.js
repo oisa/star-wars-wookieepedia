@@ -9,6 +9,8 @@ function ThemeContextProvider({ children }) {
 
   const [people, setPeople] = useState()
   const [films, setFilms] = useState()
+  const [favourites, setFavourites] = useState([])
+  const [allegiance, setAllegiance] = useState()
   const [searchResults, setSearchResults] = useState()
 
   const getData = async (query) => {
@@ -40,7 +42,7 @@ function ThemeContextProvider({ children }) {
 
   // Values passed down to children
 
-  const values = { setTheme, theme, people, films, getSearchData, setSearchResults, searchResults, getData };
+  const values = { setTheme, theme, people, films, setFilms, getSearchData, setSearchResults, searchResults, getData, setFavourites, favourites };
 
   return (
     <ThemeContext.Provider value={ values }>
