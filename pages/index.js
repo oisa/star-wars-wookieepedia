@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.scss'
@@ -12,6 +12,8 @@ import ThemeComponent from '../components/Theme/ThemeComponent';
 
 export default function Home() {
 
+const [ogimage, setogimage] = useState('%PUBLIC_URL%/public/Wookieepedia-Star-Wars-Database-OG-Image.png')
+
   return (
     <div className={styles.container}>
       <Head>
@@ -23,7 +25,7 @@ export default function Home() {
         <link rel="manifest" href="../public/site.webmanifest" />
         <meta name="msapplication-TileColor" content="#000000" />
         <meta name="theme-color" content="#ffffff" />
-        <meta property="og:image" content="%PUBLIC_URL%/public/Wookieepedia-Star-Wars-Database-OG-Image.png" />
+        <meta property="og:image" content={ ogimage == null ? null : ogimage } />
         <link rel="apple-touch-icon" sizes="180x180" href="../public/apple-touch-icon.png" />
         <link rel="icon" type="image/png" sizes="32x32" href="../public/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="../public/favicon-16x16.png" />
