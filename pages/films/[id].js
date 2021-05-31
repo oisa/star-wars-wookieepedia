@@ -44,14 +44,36 @@ const FilmDetail = ({ children, href }) => {
     'December'
   ]
 
+  const isCharacterInFilm = (characterFilms) => {
+
+    let result = false;
+    let currentFilm = (window.location.href).split("/").slice(-1)[0];
+
+
+    characterFilms.forEach((film) => {
+
+      const filmNumber = film.split("/").slice(-1)[0];
+
+      if (filmNumber == currentFilm) {
+        result = true
+      } else {
+        result
+      }
+
+    })
+
+    return result
+
+  }
+
   const getData = async () => {
 
     const pageNum = await ((window.location.href).split("/").slice(-1)[0]);
 
-    films == undefined ? null :  setSelectedFilm(films[Number(pageNum-1)])
+    films == undefined ? null : setSelectedFilm(films[Number(pageNum-1)])
 
     characters == undefined ? null :
-    setSelectedFilmCharacters(characters.flat())
+    setSelectedFilmCharacters(characters.flat().filter(character => isCharacterInFilm(character.films) == true))
 
   }
 

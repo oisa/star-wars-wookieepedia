@@ -59,10 +59,6 @@ function ThemeContextProvider({ children }) {
         setCharacters(JSON.parse(localStorage.getItem('characters')));
       }
 
-      // if (characters == undefined) {
-      //   getCharacters();
-      // }
-
     }
 
   }
@@ -97,7 +93,7 @@ function ThemeContextProvider({ children }) {
 
     for (let i = 1; i <= 9; i++) {
 
-      axios(`https://swapi.dev/api/people/?page=${ i  }`).then((response) => {
+      axios(`https://swapi.dev/api/people/?page=${ i }`).then((response) => {
         results.push(response.data.results);
       });
 
