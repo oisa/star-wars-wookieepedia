@@ -21,7 +21,6 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
         <meta property="og:title" content="Wookieepedia | Star Wars Film Database" />
         <meta property="og:description" content="Explore all the details for all your favourite Star Wars films!" />
-        <link rel="manifest" href="../public/site.webmanifest" />
         <meta name="msapplication-TileColor" content="#000000" />
         <meta name="theme-color" content="#ffffff" />
         <meta property="og:image" content="%PUBLIC_URL%/public/Wookieepedia-Star-Wars-Database-OG-Image.png" />

@@ -21,7 +21,7 @@ const FilmList = () => {
 
   // Add to Favourites
 
-  const addToFavourites = (i) => {
+  const addToFavourites = async (i) => {
 
     let favourite = filmsList[i];
 
@@ -35,7 +35,7 @@ const FilmList = () => {
       return Date.parse(a.release_date) - Date.parse(b.release_date);
     }));
 
-    updateLocalStorage()
+    // updateLocalStorage()
 
   }
 
@@ -55,22 +55,22 @@ const FilmList = () => {
       return Date.parse(a.release_date) - Date.parse(b.release_date);
     }));
 
-    updateLocalStorage()
+    // updateLocalStorage()
 
   }
 
-  const updateLocalStorage = () => {
-
-    localStorage.setItem('favourites', JSON.stringify(favourites));
-    localStorage.setItem('filmsList', JSON.stringify(filmsList));
+  const updateLocalStorage = async () => {
+    
+    const updateFavourites = await localStorage.setItem('favourites', JSON.stringify(favourites));
+    const updateFilmsList = await localStorage.setItem('filmsList', JSON.stringify(filmsList));
 
   }
 
   useEffect(() => {
 
+    updateLocalStorage()
 
-
-  }, []);
+  }, [favourites]);
 
   return (
     <>

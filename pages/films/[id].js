@@ -52,8 +52,8 @@ const FilmDetail = ({ children, href }) => {
 
     characterFilms.forEach((film) => {
 
-      const filmNumber = film.split("/").slice(-1)[0];
-
+      const filmNumber = film.split("/").slice(-2)[0];
+      
       if (filmNumber == currentFilm) {
         result = true
       } else {
@@ -136,7 +136,7 @@ const FilmDetail = ({ children, href }) => {
 
               <div className={ styles.charactersContainer }>
                 <h3>Characters</h3>
-                { characters == undefined ? null : characters.flat().map((sr, i) => (
+                { characters == undefined ? null : characters.flat().filter(character => isCharacterInFilm(character.films) == true).map((sr, i) => (
                   <div className={ styles.tooltip } key={ i }>{ sr.name }
                     <span className={ styles.tooltipText } >{ `${ sr.name } | ${ sr.birth_year } | ${ sr.eye_color } | ${ sr.gender } | ${ sr.hair_color }` }</span>
                   </div>

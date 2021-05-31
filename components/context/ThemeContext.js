@@ -11,8 +11,8 @@ function ThemeContextProvider({ children }) {
 
   const [films, setFilms] = useState()
   const [filmsList, setFilmsList] = useState()
-  const [characters, setCharacters] = useState()
   const [favourites, setFavourites] = useState([])
+  const [characters, setCharacters] = useState()
   const [selectedFilmCharacters, setSelectedFilmCharacters] = useState();
   const [searchResults, setSearchResults] = useState()
 
@@ -39,7 +39,7 @@ function ThemeContextProvider({ children }) {
       }
 
       // Favourites
-      if (localStorage.getItem('favourites') === null) {
+      if (localStorage.getItem('favourites') == null) {
         localStorage.setItem('favourites', JSON.stringify(favourites));
       } else {
         setFavourites(JSON.parse(localStorage.getItem('favourites')));
@@ -95,6 +95,7 @@ function ThemeContextProvider({ children }) {
 
       axios(`https://swapi.dev/api/people/?page=${ i }`).then((response) => {
         results.push(response.data.results);
+        localStorage.setItem('characters', JSON.stringify(response.data.results));
       });
 
     }
