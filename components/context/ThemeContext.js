@@ -13,6 +13,7 @@ function ThemeContextProvider({ children }) {
   const [filmsList, setFilmsList] = useState()
   const [characters, setCharacters] = useState()
   const [favourites, setFavourites] = useState([])
+  const [selectedFilmCharacters, setSelectedFilmCharacters] = useState();
   const [searchResults, setSearchResults] = useState()
 
   // Theme
@@ -26,23 +27,27 @@ function ThemeContextProvider({ children }) {
 
   // Films data retrieval
 
-  const getData = async (requests) => {
+  const getInitialData = () => {
+
+    // Films List (Home page only)
+    if (localStorage.getItem('filmsList') === null) {
+      getFilmsList()
+    } else {
+      setFilmsList(JSON.parse(localStorage.getItem('filmsList')));
+    }
+
+    // Favourites
+    if (localStorage.getItem('favourites') === null) {
+      localStorage.setItem('favourites', JSON.stringify(favourites));
+    } else {
+      setFavourites(JSON.parse(localStorage.getItem('favourites')));
+    }
+
+  }
+
+  const getAllData = () => {
 
     if (typeof window !== 'undefined') {
-
-      // Films List (Home page list)
-      if (localStorage.getItem('filmsList') === null) {
-        getFilmsList()
-      } else {
-        setFilmsList(JSON.parse(localStorage.getItem('filmsList')));
-      }
-
-      // Favourites
-      if (localStorage.getItem('favourites') === null) {
-        localStorage.setItem('favourites', JSON.stringify(favourites));
-      } else {
-        setFavourites(JSON.parse(localStorage.getItem('favourites')));
-      }
 
       // Films
       if (localStorage.getItem('films') === null) {
@@ -51,11 +56,15 @@ function ThemeContextProvider({ children }) {
         setFilms(JSON.parse(localStorage.getItem('films')));
       }
 
-      // Characters
-      if (localStorage.getItem('characters') === null) {
-        getCharacters()
-      } else {
-        setCharacters(JSON.parse(localStorage.getItem('characters')));
+      // // Characters
+      // if (localStorage.getItem('characters') === null) {
+      //   getCharacters();
+      // } else {
+      //   setCharacters(JSON.parse(localStorage.getItem('characters')));
+      // }
+
+      if (characters == null) {
+        getCharacters();
       }
 
     }
@@ -112,7 +121,8 @@ function ThemeContextProvider({ children }) {
 
   useEffect(() => {
 
-    getData()
+    getInitialData()
+    getAllData()
 
   }, []);
 
@@ -126,6 +136,8 @@ function ThemeContextProvider({ children }) {
     setTheme,
     theme,
     characters,
+    selectedFilmCharacters,
+    setSelectedFilmCharacters,
     getSearchData,
     setSearchResults,
     searchResults,

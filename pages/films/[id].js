@@ -16,9 +16,8 @@ import StarWarsLogo from '../../public/assets/StarWarsLogo';
 const FilmDetail = ({ children, href }) => {
 
   const [selectedFilm, setSelectedFilm] = useState();
-  const [selectedFilmCharacters, setSelectedFilmCharacters] = useState();
 
-  const { films, characters, getSelectedFilm, getMainData } = useContext(ThemeContext)
+  const { films, characters, getSelectedFilm, getMainData, selectedFilmCharacters, setSelectedFilmCharacters } = useContext(ThemeContext)
 
   const days = [
     'Sun',
@@ -51,13 +50,16 @@ const FilmDetail = ({ children, href }) => {
 
     films == undefined ? null :  setSelectedFilm(films[Number(pageNum-1)])
 
+    characters == undefined ? null :
+    setSelectedFilmCharacters(characters.flat())
+
   }
 
   useEffect(() => {
 
     getData()
 
-  }, [films, characters])
+  }, [films])
 
   return (
     <div className={ styles.container }>
@@ -112,8 +114,7 @@ const FilmDetail = ({ children, href }) => {
 
               <div className={ styles.charactersContainer }>
                 <h3>Characters</h3>
-                { selectedFilmCharacters == null ? null : selectedFilmCharacters.map((sr, i) => (
-
+                { characters == undefined ? null : characters.flat().map((sr, i) => (
                   <div className={ styles.tooltip } key={ i }>{ sr.name }
                     <span className={ styles.tooltipText } >{ `${ sr.name } | ${ sr.birth_year } | ${ sr.eye_color } | ${ sr.gender } | ${ sr.hair_color }` }</span>
                   </div>
