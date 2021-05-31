@@ -5,16 +5,29 @@ export const ThemeContext = createContext()
 
 function ThemeContextProvider({ children }) {
 
-  // State variables
+  // State variables ///////////////////////////////////////
 
   const [films, setFilms] = useState()
+  const [filmsList, setFilmsList] = useState()
   const [characters, setCharacters] = useState()
   const [favourites, setFavourites] = useState([])
   const [searchResults, setSearchResults] = useState()
 
-  // SWAPI Requests
+  // Theme
+
+  const [theme, setTheme] = useState(true);
+  const [allegiance, setAllegiance] = useState()
+
+  // SWAPI Requests /////////////////////////////////////////
 
   // Films data retrieval
+
+  const getData = async (requests) => {
+
+    const initial = await getFilms()
+    const otherData = await getCharacters()
+
+  }
 
   const getFilms = () => {
 
@@ -26,7 +39,7 @@ function ThemeContextProvider({ children }) {
 
   const getCharacters = () => {
 
-    axios('https://swapi.dev/api/people/').then((response) => {
+    axios('https://swapi.dev/api/people').then((response) => {
       setCharacters(response.data.results);
     });
 
@@ -42,15 +55,9 @@ function ThemeContextProvider({ children }) {
 
   useEffect(() => {
 
-    getFilms()
-    getCharacters()
+    getData()
 
   }, []);
-
-  // Theme
-
-  const [theme, setTheme] = useState(true);
-  const [allegiance, setAllegiance] = useState()
 
   // Values passed down to children
 
