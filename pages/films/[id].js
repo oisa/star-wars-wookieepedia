@@ -49,7 +49,7 @@ const FilmDetail = ({ children, href }) => {
 
     const pageNum = await ((window.location.href).split("/").slice(-1)[0]);
 
-    films == undefined ? null :  setSelectedFilm(films[Number(pageNum)])
+    films == undefined ? null :  setSelectedFilm(films[Number(pageNum-1)])
 
   }
 
@@ -57,7 +57,7 @@ const FilmDetail = ({ children, href }) => {
 
     getData()
 
-  }, [films])
+  }, [films, characters])
 
   return (
     <div className={ styles.container }>
@@ -112,7 +112,7 @@ const FilmDetail = ({ children, href }) => {
 
               <div className={ styles.charactersContainer }>
                 <h3>Characters</h3>
-                { characters == null ? null : characters.flat().map((sr, i) => (
+                { selectedFilmCharacters == null ? null : selectedFilmCharacters.map((sr, i) => (
 
                   <div className={ styles.tooltip } key={ i }>{ sr.name }
                     <span className={ styles.tooltipText } >{ `${ sr.name } | ${ sr.birth_year } | ${ sr.eye_color } | ${ sr.gender } | ${ sr.hair_color }` }</span>
