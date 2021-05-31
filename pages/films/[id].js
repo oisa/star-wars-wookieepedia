@@ -47,7 +47,7 @@ const FilmDetail = ({ children, href }) => {
 
   const getData = async () => {
     const pageNum = await ((window.location.href).split("/").slice(-1)[0]);
-    const res = await fetch(`https://swapi.dev/api/films/${ pageNum }`);
+    const res = await fetch(`//swapi.dev/api/films/${ pageNum }`);
     const json = await res.json();
     return setSelectedFilm(json);
   }
