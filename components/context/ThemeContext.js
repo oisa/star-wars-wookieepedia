@@ -43,6 +43,8 @@ function ThemeContextProvider({ children }) {
       setFavourites(JSON.parse(localStorage.getItem('favourites')));
     }
 
+    getAllData()
+
   }
 
   const getAllData = () => {
@@ -122,7 +124,6 @@ function ThemeContextProvider({ children }) {
   useEffect(() => {
 
     getInitialData()
-    getAllData()
 
   }, []);
 
