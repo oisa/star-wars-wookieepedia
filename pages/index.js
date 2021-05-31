@@ -7,6 +7,7 @@ import styles from '../styles/Home.module.scss'
 import Header from '../components/Header/Header';
 import Footer from '../components/Footer/Footer';
 import Foo from '../components/Foo/Foo.js';
+import FilmList from '../components/FilmList/FilmList';
 import FilmSearch from '../components/FilmSearch/FilmSearch';
 import ThemeComponent from '../components/Theme/ThemeComponent';
 
@@ -33,6 +34,8 @@ export default function Home() {
       <Header />
 
       <div className={styles.mainContainer}>
+
+        <FilmList />
 
         <FilmSearch />
 
