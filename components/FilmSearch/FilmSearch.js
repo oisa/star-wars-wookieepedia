@@ -9,7 +9,7 @@ import IconStarSelected from '../../public/assets/StarIconSelected'
 
 const FilmSearch = () => {
 
-  const { films, setFilms, favourites, setFavourites } = useContext(ThemeContext)
+  const { films, setFilms, filmsList, setFilmsList, favourites, setFavourites } = useContext(ThemeContext)
 
   // Sort Method
 
@@ -21,7 +21,7 @@ const FilmSearch = () => {
 
   const addToFavourites = (i) => {
 
-    let favourite = films[i];
+    let favourite = filmsList[i];
 
     // Updates Favourites list
     setFavourites([...favourites, favourite].sort(function(a, b) {
@@ -29,12 +29,12 @@ const FilmSearch = () => {
     }));
 
     // Updates Films list
-    setFilms((films.filter(item => item.episode_id !== favourite.episode_id)).sort(function(a, b) {
+    setFilmsList((filmsList.filter(item => item.episode_id !== favourite.episode_id)).sort(function(a, b) {
       return Date.parse(a.release_date) - Date.parse(b.release_date);
     }));
 
     localStorage.setItem('favourites', JSON.stringify(favourites));
-    localStorage.setItem('films', JSON.stringify(films));
+    localStorage.setItem('films', JSON.stringify(filmsList));
 
   }
 
@@ -45,7 +45,7 @@ const FilmSearch = () => {
     let favourite = favourites[i];
 
     // Updates Films list
-    setFilms([...films, favourite].sort(function(a, b) {
+    setFilmsList([...filmsList, favourite].sort(function(a, b) {
       return Date.parse(a.release_date) - Date.parse(b.release_date);
     }));
 
@@ -55,7 +55,7 @@ const FilmSearch = () => {
     }));
 
     localStorage.setItem('favourites', JSON.stringify(favourites));
-    localStorage.setItem('films', JSON.stringify(films));
+    localStorage.setItem('films', JSON.stringify(filmsList));
 
   }
 
@@ -82,7 +82,7 @@ const FilmSearch = () => {
         </ul>
 
         <ul>
-          { films == null ? <li><p>Loading...</p></li> : films.map((sr, i) => (
+          { filmsList == null ? <li><p>Loading...</p></li> : filmsList.map((sr, i) => (
           <li key={i}>
             <a href={ `films/${sr.url.replace("http://swapi.dev/api/films/", "")}` }>
             Episode {sr.episode_id}: {sr.title}</a><span onClick={() => { addToFavourites(i)}}><IconStar  /></span>

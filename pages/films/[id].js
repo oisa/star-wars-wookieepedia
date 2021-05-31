@@ -18,7 +18,7 @@ const FilmDetail = ({ children, href }) => {
   const [selectedFilm, setSelectedFilm] = useState();
   const [selectedFilmCharacters, setSelectedFilmCharacters] = useState();
 
-  const { characters, films, getSelectedFilm, getMainData } = useContext(ThemeContext)
+  const { films, characters, getSelectedFilm, getMainData } = useContext(ThemeContext)
 
   const days = [
     'Sun',
@@ -50,8 +50,6 @@ const FilmDetail = ({ children, href }) => {
     const pageNum = await ((window.location.href).split("/").slice(-1)[0]);
 
     films == undefined ? null :  setSelectedFilm(films[Number(pageNum)])
-
-    return
 
   }
 

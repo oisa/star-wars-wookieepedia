@@ -24,24 +24,79 @@ function ThemeContextProvider({ children }) {
 
   const getData = async (requests) => {
 
-    const initial = await getFilms()
-    const otherData = await getCharacters()
+    // const initial = await getFilms()
+
+    if (typeof window !== 'undefined') {
+
+      // Films List (Home page list)
+      if (localStorage.getItem('filmsList') === null) {
+        getFilmsList()
+      } else {
+        setFilmsList(JSON.parse(localStorage.getItem('filmsList')));
+      }
+
+      // Favourites
+      if (localStorage.getItem('favourites') === null) {
+        localStorage.setItem('favourites', JSON.stringify(favourites));
+      } else {
+        setFavourites(JSON.parse(localStorage.getItem('favourites')));
+      }
+
+      // Films
+      if (localStorage.getItem('films') === null) {
+        getFilms()
+      } else {
+        setFilms(JSON.parse(localStorage.getItem('films')));
+      }
+
+      // Characters
+      if (localStorage.getItem('characters') === null) {
+        getCharacters()
+      } else {
+        setCharacters(JSON.parse(localStorage.getItem('characters')));
+      }
+
+    }
+
+  }
+
+  const getFilmsList = () => {
+
+    axios('https://swapi.dev/api/films/').then((response) => {
+
+      setFilmsList(response.data.results);
+
+      localStorage.setItem('filmsList', JSON.stringify(response.data.results));
+
+    })
 
   }
 
   const getFilms = () => {
 
     axios('https://swapi.dev/api/films/').then((response) => {
+
       setFilms(response.data.results);
-    });
+
+      localStorage.setItem('films', JSON.stringify(response.data.results));
+
+    })
 
   }
 
   const getCharacters = () => {
 
-    axios('https://swapi.dev/api/people').then((response) => {
-      setCharacters(response.data.results);
-    });
+    let results = [];
+
+    for (let i = 1; i <= 9; i++) {
+
+      axios(`https://swapi.dev/api/people/?page=${ i  }`).then((response) => {
+        results.push(response.data.results);
+      });
+
+    }
+
+    return setCharacters(results);
 
   }
 
@@ -62,11 +117,13 @@ function ThemeContextProvider({ children }) {
   // Values passed down to children
 
   const values = {
+    films,
+    setFilms,
+    filmsList,
+    setFilmsList,
     setTheme,
     theme,
     characters,
-    films,
-    setFilms,
     getSearchData,
     setSearchResults,
     searchResults,
