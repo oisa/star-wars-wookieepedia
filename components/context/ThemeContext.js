@@ -27,27 +27,23 @@ function ThemeContextProvider({ children }) {
 
   // Films data retrieval
 
-  const getInitialData = async () => {
-
-    // Films List (Home page only)
-    if (localStorage.getItem('filmsList') === null) {
-      getFilmsList()
-    } else {
-      setFilmsList(JSON.parse(localStorage.getItem('filmsList')));
-    }
-
-    // Favourites
-    if (localStorage.getItem('favourites') === null) {
-      localStorage.setItem('favourites', JSON.stringify(favourites));
-    } else {
-      setFavourites(JSON.parse(localStorage.getItem('favourites')));
-    }
-
-  }
-
-  const getAllData = () => {
+  const getData = async (requests) => {
 
     if (typeof window !== 'undefined') {
+
+      // Films List (Home page list)
+      if (localStorage.getItem('filmsList') === null) {
+        getFilmsList()
+      } else {
+        setFilmsList(JSON.parse(localStorage.getItem('filmsList')));
+      }
+
+      // Favourites
+      if (localStorage.getItem('favourites') === null) {
+        localStorage.setItem('favourites', JSON.stringify(favourites));
+      } else {
+        setFavourites(JSON.parse(localStorage.getItem('favourites')));
+      }
 
       // Films
       if (localStorage.getItem('films') === null) {
@@ -56,16 +52,16 @@ function ThemeContextProvider({ children }) {
         setFilms(JSON.parse(localStorage.getItem('films')));
       }
 
-      // // Characters
-      // if (localStorage.getItem('characters') === null) {
-      //   getCharacters();
-      // } else {
-      //   setCharacters(JSON.parse(localStorage.getItem('characters')));
-      // }
-
-      if (characters == null) {
+      // Characters
+      if (localStorage.getItem('characters') === null) {
         getCharacters();
+      } else {
+        setCharacters(JSON.parse(localStorage.getItem('characters')));
       }
+
+      // if (characters == undefined) {
+      //   getCharacters();
+      // }
 
     }
 
@@ -121,7 +117,7 @@ function ThemeContextProvider({ children }) {
 
   useEffect(() => {
 
-    getInitialData()
+    getData()
 
   }, []);
 
