@@ -3,6 +3,7 @@ import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../../styles/Id.module.scss'
 import axios from 'axios';
+import { ThemeContext } from '../../components/context/ThemeContext';
 
 // Components
 import ThemeComponent from '../../components/Theme/ThemeComponent'
@@ -16,6 +17,8 @@ const FilmDetail = ({ children, href }) => {
 
   const [selectedFilm, setSelectedFilm] = useState();
   const [selectedFilmCharacters, setSelectedFilmCharacters] = useState();
+
+  const { characters } = useContext(ThemeContext)
 
   const days = [
     'Sun',
@@ -42,51 +45,11 @@ const FilmDetail = ({ children, href }) => {
     'December'
   ]
 
-  // const getCharacterData = async (json) => {
-  //
-  //   const result = [];
-  //
-  //   (json.characters).forEach(async (item) => {
-  //
-  //     const https = item.replace("http", "https");
-  //     const res = await fetch(item);
-  //     const json = await res.json();
-  //     const write = result.push(json);
-  //     const updateState = await setSelectedFilmCharacters([...result]);
-  //
-  //   });
-  //
-  // }
-
-  const getCharacterData = async (json) => {
-
-    const result = [];
-
-    (json.characters).forEach(async (item) => {
-
-      // const https = item.replace("http", "https");
-      // const res = await fetch(item);
-      // const json = await res.json();
-      // const write = result.push(json);
-      // const updateState = await setSelectedFilmCharacters([...result]);
-
-      const https =  await item.replace("http", "https");
-
-      axios(https).then((response) => {
-        console.log(response.data);
-        const write = result.push(response.data);
-        setSelectedFilmCharacters([...result]);
-      });
-
-    });
-
-  }
-
   const getData = async () => {
     const pageNum = await ((window.location.href).split("/").slice(-1)[0]);
     const res = await fetch(`https://swapi.dev/api/films/${ pageNum }`);
     const json = await res.json();
-    return setSelectedFilm(json), getCharacterData(json);
+    return setSelectedFilm(json);
   }
 
   useEffect(() => {
@@ -146,7 +109,7 @@ const FilmDetail = ({ children, href }) => {
 
               <div className={ styles.charactersContainer }>
                 <h3>Characters</h3>
-                { selectedFilmCharacters == null ? null : selectedFilmCharacters.map((sr, i) => (
+                { characters == null ? null : characters.map((sr, i) => (
 
                   <div className={ styles.tooltip } key={ i }>{ sr.name }
                     <span className={ styles.tooltipText } >{ `${ sr.name } | ${ sr.birth_year } | ${ sr.eye_color } | ${ sr.gender } | ${ sr.hair_color }` }</span>

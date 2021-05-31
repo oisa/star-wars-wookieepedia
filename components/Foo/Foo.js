@@ -11,6 +11,12 @@ const Foo = () => {
     setSearchResults(results)
   }
 
+  // const getData = async (query) => {
+  //   const res = await fetch(`https://swapi.dev/api/${query}`);
+  //   const data = await res.json();
+  //   return data
+  // }
+
   useEffect(() => {
     console.log(searchResults)
   }, [searchResults])

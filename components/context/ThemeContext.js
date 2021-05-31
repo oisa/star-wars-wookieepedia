@@ -5,35 +5,46 @@ export const ThemeContext = createContext()
 
 function ThemeContextProvider({ children }) {
 
-  // SWAPI Requests
+  // State variables
 
-  const [people, setPeople] = useState()
   const [films, setFilms] = useState()
+  const [characters, setCharacters] = useState()
   const [favourites, setFavourites] = useState([])
   const [searchResults, setSearchResults] = useState()
 
-  const getData = async (query) => {
-    const res = await fetch(`https://swapi.dev/api/${query}`);
-    const data = await res.json();
-    return data
-  }
+  // SWAPI Requests
+
+  // Films data retrieval
 
   const getFilms = () => {
 
     axios('https://swapi.dev/api/films/').then((response) => {
       setFilms(response.data.results);
     });
+
+  }
+
+  const getCharacters = () => {
+
+    axios('https://swapi.dev/api/people/').then((response) => {
+      setCharacters(response.data.results);
+    });
+
   }
 
   const getSearchData = async (page, query) => {
+
     const res = await fetch(`https://swapi.dev/api/${page}/?search=${query}`);
     const json = await res.json();
     return json
+
   }
 
   useEffect(() => {
-    setPeople(getData('people'))
+
     getFilms()
+    getCharacters()
+
   }, []);
 
   // Theme
@@ -46,13 +57,12 @@ function ThemeContextProvider({ children }) {
   const values = {
     setTheme,
     theme,
-    people,
+    characters,
     films,
     setFilms,
     getSearchData,
     setSearchResults,
     searchResults,
-    getData,
     setFavourites,
     favourites,
     allegiance,
