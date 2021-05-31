@@ -5,7 +5,9 @@ export const ThemeContext = createContext()
 
 function ThemeContextProvider({ children }) {
 
+  ///////////////////////////////////////////////////////////
   // State variables ///////////////////////////////////////
+  ///////////////////////////////////////////////////////////
 
   const [films, setFilms] = useState()
   const [filmsList, setFilmsList] = useState()
@@ -18,13 +20,13 @@ function ThemeContextProvider({ children }) {
   const [theme, setTheme] = useState(true);
   const [allegiance, setAllegiance] = useState()
 
+  ///////////////////////////////////////////////////////////
   // SWAPI Requests /////////////////////////////////////////
+  ///////////////////////////////////////////////////////////
 
   // Films data retrieval
 
   const getData = async (requests) => {
-
-    // const initial = await getFilms()
 
     if (typeof window !== 'undefined') {
 

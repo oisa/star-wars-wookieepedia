@@ -112,7 +112,7 @@ const FilmDetail = ({ children, href }) => {
 
               <div className={ styles.charactersContainer }>
                 <h3>Characters</h3>
-                { characters == null ? null : characters.map((sr, i) => (
+                { characters == null ? null : characters.flat().map((sr, i) => (
 
                   <div className={ styles.tooltip } key={ i }>{ sr.name }
                     <span className={ styles.tooltipText } >{ `${ sr.name } | ${ sr.birth_year } | ${ sr.eye_color } | ${ sr.gender } | ${ sr.hair_color }` }</span>
