@@ -27,7 +27,7 @@ function ThemeContextProvider({ children }) {
 
   // Films data retrieval
 
-  const getInitialData = () => {
+  const getInitialData = async () => {
 
     // Films List (Home page only)
     if (localStorage.getItem('filmsList') === null) {
@@ -42,8 +42,6 @@ function ThemeContextProvider({ children }) {
     } else {
       setFavourites(JSON.parse(localStorage.getItem('favourites')));
     }
-
-    getAllData()
 
   }
 
