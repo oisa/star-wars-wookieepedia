@@ -42,17 +42,41 @@ const FilmDetail = ({ children, href }) => {
     'December'
   ]
 
+  // const getCharacterData = async (json) => {
+  //
+  //   const result = [];
+  //
+  //   (json.characters).forEach(async (item) => {
+  //
+  //     const https = item.replace("http", "https");
+  //     const res = await fetch(item);
+  //     const json = await res.json();
+  //     const write = result.push(json);
+  //     const updateState = await setSelectedFilmCharacters([...result]);
+  //
+  //   });
+  //
+  // }
+
   const getCharacterData = async (json) => {
 
     const result = [];
 
     (json.characters).forEach(async (item) => {
 
-      const https = item.replace("http", "https");
-      const res = await fetch(item);
-      const json = await res.json();
-      const write = result.push(json);
-      const updateState = await setSelectedFilmCharacters([...result]);
+      // const https = item.replace("http", "https");
+      // const res = await fetch(item);
+      // const json = await res.json();
+      // const write = result.push(json);
+      // const updateState = await setSelectedFilmCharacters([...result]);
+
+      const https =  await item.replace("http", "https");
+
+      axios(https).then((response) => {
+        console.log(response.data);
+        const write = result.push(response.data);
+        setSelectedFilmCharacters([...result]);
+      });
 
     });
 
