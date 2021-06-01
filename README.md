@@ -11,21 +11,26 @@ Explore all the details for all your favourite Star Wars films.
 
 ## Features
 
-- _Star_ your favourite Star Wars films!
+- ⭐️_Star_⭐️ your favourite Star Wars films!
 - View film details including character information and general film specs!
 - Choose your allegiance - are you on the dark or light side?
-- Your allegiance and starred films are saved to localStorage so you don't have to start back where you started off each time you visit :)
+- Search for your favourite characters!
 
 ![Wookieepedia Image | Home](public/readme-image-2.png)
 
-### Coming features
+### Coming soon
 
-- Film search on the home page
+- Save your favourites! ⭐️
+- Extended information on characters within the search (including films the character appears on with a link to its detail page)
+- Dynamic starfield background
 - Sort films by episode number or release date
 
-### Known issues
+#### Message to the developer
 
-- Mixed Content is preventing data loading on the detail pages, this is I believe being caused by nested references within each parent directory on the SWAPI holding http references.
-- Meta image references aren't loading I believe due to SSR needing to be utilised here.
+### Known issues / being worked on
 
-Thank you to [SWAPI](https://swapi.dev/) for making this possible!
+- Saving favourites caused a lot of issues as I couldn't figure why the first instance a favourite was selected wouldn't be favourited. (removed film from the `filmsList` and added it to the favourites list). It was saving the user's last selection rather than the current one. This suggests to me that it was saving the `favorites` state to localStorage before the update had been made to the state though I tried a number of methods using async/await and promises in the attempt to ensure the states were updated before localStorage was updated. Would love to know why here!
+- Meta image references aren't loading I believe due to SSR needing to be considered for the loading sequence of these image assets.
+
+
+Thank you to [SWAPI](https://swapi.dev/) and the WM crew for making this app possible!

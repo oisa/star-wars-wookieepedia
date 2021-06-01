@@ -35,7 +35,7 @@ const FilmSearch = () => {
 
         <div className={ styles.searchContainer }>
           Search:
-          <input type="text" placeholder="Episode 1" onChange={ (e) => { handleChange(e) } }></input>
+          <input type="text" placeholder="Yoda" onChange={ (e) => { handleChange(e) } }></input>
           <button onClick={ () => { getResults() } }>Go!</button>
         </div>
 
