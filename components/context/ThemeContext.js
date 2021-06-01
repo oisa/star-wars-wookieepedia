@@ -14,7 +14,8 @@ function ThemeContextProvider({ children }) {
   const [favourites, setFavourites] = useState([])
   const [characters, setCharacters] = useState()
   const [selectedFilmCharacters, setSelectedFilmCharacters] = useState();
-  const [searchResults, setSearchResults] = useState()
+  const [searchResults, setSearchResults] = useState();
+  const [searchValue, setSearchValue] = useState();
 
   // Theme
   const [theme, setTheme] = useState();
@@ -24,7 +25,7 @@ function ThemeContextProvider({ children }) {
   // SWAPI Requests /////////////////////////////////////////
   ///////////////////////////////////////////////////////////
 
-  // Films data retrieval
+  // Data retrieval
 
   const getData = async (requests) => {
 
@@ -105,14 +106,6 @@ function ThemeContextProvider({ children }) {
 
   }
 
-  const getSearchData = async (page, query) => {
-
-    const res = await fetch(`https://swapi.dev/api/${page}/?search=${query}`);
-    const json = await res.json();
-    return json
-
-  }
-
   useEffect(() => {
 
     getData()
@@ -135,9 +128,10 @@ function ThemeContextProvider({ children }) {
     characters,
     selectedFilmCharacters,
     setSelectedFilmCharacters,
-    getSearchData,
+    searchResults,
     setSearchResults,
-    searchResults
+    searchValue,
+    setSearchValue
   };
 
   return (
