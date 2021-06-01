@@ -17,8 +17,7 @@ function ThemeContextProvider({ children }) {
   const [searchResults, setSearchResults] = useState()
 
   // Theme
-
-  const [theme, setTheme] = useState(true);
+  const [theme, setTheme] = useState();
   const [allegiance, setAllegiance] = useState()
 
   ///////////////////////////////////////////////////////////
@@ -42,7 +41,7 @@ function ThemeContextProvider({ children }) {
       if (localStorage.getItem('favourites') == null) {
         localStorage.setItem('favourites', JSON.stringify(favourites));
       } else {
-        setFavourites(JSON.parse(localStorage.getItem('favourites')));
+        // setFavourites(JSON.parse(localStorage.getItem('favourites')));
       }
 
       // Films
@@ -95,7 +94,6 @@ function ThemeContextProvider({ children }) {
 
       axios(`https://swapi.dev/api/people/?page=${ i }`).then((response) => {
         results.push(response.data.results);
-        // localStorage.setItem('characters', JSON.stringify(response.data.results));
       }).then((res) => {
         setCharacters(results)
         localStorage.setItem('characters', JSON.stringify(results))
@@ -128,18 +126,18 @@ function ThemeContextProvider({ children }) {
     setFilms,
     filmsList,
     setFilmsList,
-    setTheme,
+    favourites,
+    setFavourites,
     theme,
+    setTheme,
+    allegiance,
+    setAllegiance,
     characters,
     selectedFilmCharacters,
     setSelectedFilmCharacters,
     getSearchData,
     setSearchResults,
-    searchResults,
-    setFavourites,
-    favourites,
-    allegiance,
-    setAllegiance
+    searchResults
   };
 
   return (

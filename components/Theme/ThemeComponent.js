@@ -9,24 +9,28 @@ import styles from './Theme.module.scss';
 
 const Theme = () => {
 
-  const { allegiance, setAllegiance } = useContext(ThemeContext)
+  const { allegiance, setAllegiance, theme, setTheme } = useContext(ThemeContext)
 
   let currentTheme;
   let currentAllegiance;
 
   if (typeof window !== 'undefined') {
+
     if (localStorage.getItem('theme') === null) {
       localStorage.setItem('theme', 'light');
       currentTheme = 'light';
       localStorage.setItem('allegiance', 'The Force');
       currentAllegiance = 'The Force';
+
     } else {
+
       currentTheme = localStorage.getItem('theme');
       currentAllegiance = localStorage.getItem('allegiance');
+      
     }
   }
 
-  const [theme, setTheme] = useState(currentTheme);
+  setTheme(currentTheme);
   setAllegiance(currentAllegiance);
 
   const toggleTheme = () => {
