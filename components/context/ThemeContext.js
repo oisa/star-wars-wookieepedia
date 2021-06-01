@@ -95,12 +95,15 @@ function ThemeContextProvider({ children }) {
 
       axios(`https://swapi.dev/api/people/?page=${ i }`).then((response) => {
         results.push(response.data.results);
-        localStorage.setItem('characters', JSON.stringify(response.data.results));
+        // localStorage.setItem('characters', JSON.stringify(response.data.results));
+      }).then((res) => {
+        setCharacters(results)
+        localStorage.setItem('characters', JSON.stringify(results))
       });
 
     }
 
-    return setCharacters(results);
+    return
 
   }
 
