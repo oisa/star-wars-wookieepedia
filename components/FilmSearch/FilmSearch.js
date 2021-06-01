@@ -15,15 +15,17 @@ const FilmSearch = () => {
 
   }
 
-  const getResults = () => {
+  const getResults = (e) => {
 
-    if (searchValue == " ") {
+    e.preventDefault()
+
+    if (searchValue == "") {
 
       setSearchResults(characters.flat())
 
     } else {
 
-    setSearchResults((characters.flat().filter(item => item.name.includes(searchValue))));
+    setSearchResults((characters.flat().filter(item => item.name.toLowerCase().includes(searchValue))));
 
     }
 
@@ -33,11 +35,11 @@ const FilmSearch = () => {
     <>
       <h2 className="noselect">Character Search</h2>
 
-        <div className={ styles.searchContainer }>
+        <form className={ styles.searchContainer } onClick={ (e) => { getResults(e) } }>
           Search:
           <input type="text" placeholder="Yoda" onChange={ (e) => { handleChange(e) } }></input>
-          <button onClick={ () => { getResults() } }>Go!</button>
-        </div>
+          <button type="submit">Go!</button>
+        </form>
 
         <div className={ styles.searchResultsContainer }>
           <ul>
